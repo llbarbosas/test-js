@@ -1,22 +1,23 @@
-describe('Teste do teste', (it) => {
-	it('O teste deve ser um teste', (expect) => {
-		expect("teste").to.equal("teste");
+const log = require('./log');
+
+module.exports = { describe };
+
+function describe(testName, callback){
+	log.testName(`${testName}`);
+
+	callback({
+		it: _it
 	});
-});
-
-// -----------------------------------
-
-function describe(text, callback){
-	log(`N) ${text}`);
-
-	callback(_it);
 }
 
+function _it(subtestName, callback){
+	log.subtestName(subtestName, 1);
 
-function _it(text, callback){
-	log(text, 1);
- 
-	callback(_expect);
+	callback({
+		expect: _expect.bind({
+			subtestName
+		})
+	});
 }
 
 function _expect(returnObtained){
@@ -25,7 +26,10 @@ function _expect(returnObtained){
 			equal: (returnExpected) => {
 				const condition = returnObtained == returnExpected;
 
-				log(`[${isOk(condition)}] ${returnObtained} == ${returnExpected}`, 3);
+				if(condition)
+					log.equal(returnExpected, returnObtained);
+				else
+					log.notEqual(returnExpected, returnObtained);
 			}
 		}
 	};
@@ -33,20 +37,4 @@ function _expect(returnObtained){
 	return expectTypes;
 }
 
-function log(text, tabLevel){
-	var tab = "\t".repeat(tabLevel);
-	console.log(tab + text);
-}
 
-function isOk(condition){
-	const RESET = "\x1b[0m";
-	const RED = "\x1b[31m";
-	const GREEN = "\x1b[32m";
-	const OK = "✓";
-	const ERROR = "✕";
-
-	if(condition)
-		return GREEN + OK + RESET;
-	else 
-		return RED + ERROR + RESET;
-}

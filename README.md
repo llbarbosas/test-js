@@ -3,7 +3,7 @@ Uma lib de testes pra testar conhecimentos em TDD usando Javascript
 
 ```javascript
 describe('Teste do teste', ({ it }) => {
-	it('O teste deve ser um teste', ({ expect, done }) => {
+	it('O teste deve ser um teste', ({ expect }) => {
 		expect("teste").to.equal("teste")
 	})
 })

@@ -10,7 +10,7 @@ function describe(testName, callback) {
 	log.testName(`${testName}`);
 
 	/**
-	 * @property {Function} it
+	 * @property {function} it
 	 */
 	const describeChildren = {
 		it
@@ -43,7 +43,7 @@ function it(subtestName, callback) {
 }
 
 function done() {
-	console.log(`\t ending \"${this.subtestName}\"`);
+	console.log(`\tending \"${this.subtestName}\"`);
 }
 
 /**
@@ -65,27 +65,3 @@ function expect(returnObtained) {
 
 	return expectTypes;
 }
-
-/*
-Stackoverflow <3
-
-['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'].forEach(
-    function(name) {
-        window['is' + name] = function(obj) {
-              return toString.call(obj) == '[object ' + name + ']';
-    };
-});
-
-module.exports = [
-  'Arguments',
-  'Function',
-  'String',
-  'Number',
-  'Date',
-  'RegExp'
-].reduce( (obj, name) => {
-  obj[ 'is' + name ] = x => toString.call(x) == '[object ' + name + ']';
-  return obj;
-}, {});
-*/
-

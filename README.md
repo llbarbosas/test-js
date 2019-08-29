@@ -7,7 +7,7 @@ describe('Testing the test', ({ it }) => {
 		expect("test").to.equal("test")
 	})
 
-	it('Ending tasks', ({ done }) => {
+	it('Finishing tasks', ({ done }) => {
 		done()
 	})
 })

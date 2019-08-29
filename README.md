@@ -7,7 +7,7 @@ describe('Testing the test', ({ it }) => {
 		expect("test").to.equal("test")
 	})
 
-	it('Finishing tasks', ({ done }) => {
+	it('Finish tasks', ({ done }) => {
 		done()
 	})
 })
@@ -30,8 +30,8 @@ describe('Is it safe?', ({ it }) => {
 1) Testing the test
 	A test must be a test
 		[✓] test is equal to test
-	Ending tasks
-	ending "Ending tasks"
+	Finish tasks
+	finish "Finish tasks"
 2) Is it safe?
 	Avoiding null and undefined
 		[✓] true is equal to true

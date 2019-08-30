@@ -1,47 +1,47 @@
 const log = require('./util/log');
 
-module.exports = { describe };
+module.exports = { test };
 
 /**
  * @param {string} testName 
  * @param {function} callback 
  */
-function describe(testName, callback) {
+function test(testName, callback) {
 	log.testName(`${testName}`);
 
 	/**
-	 * @property {function} it
+	 * @property {function} task
 	 */
-	const describeChildren = {
-		it
+	const testChildren = {
+		task
 	}
 
-	callback(describeChildren);
+	callback(testChildren);
 }
 
 /**
- * @param {string} subtestName 
+ * @param {string} taskName 
  * @param {function} callback 
  */
-function it(subtestName, callback) {
-	log.subtestName(subtestName, 1);
+function task(taskName, callback) {
+	log.taskName(taskName, 1);
 
 	/**
 	 * @property {function} expect
-	 * @property {function} done
+	 * @property {function} finishIf
 	 */
-	const itChildren = {
+	const taskChildren = {
 		expect: expect.bind({
-			subtestName
+			taskName
 		}),
 
 		finishIf: finishIf.bind({
-			subtestName
+			taskName
 		})
 	}
 
 	try{
-		callback(itChildren)
+		callback(taskChildren)
 	} catch(err){
 		console.log(err.message)
 	}
@@ -50,7 +50,7 @@ function it(subtestName, callback) {
 
 function finishIf(reason, condition) {
 	if(condition)
-		throw new Error(log.errorString(this.subtestName, reason));
+		throw new Error(log.errorString(this.taskName, reason));
 }
 
 /**
@@ -60,9 +60,9 @@ function expect(returnObtained) {
 	const expectTypes = {
 		to: {
 			equal: (returnExpected) => {
-				const condition = returnObtained == returnExpected;
+				const condtaskion = returnObtained == returnExpected;
 
-				if (condition)
+				if (condtaskion)
 					log.equal(returnExpected, returnObtained);
 				else
 					log.notEqual(returnExpected, returnObtained);

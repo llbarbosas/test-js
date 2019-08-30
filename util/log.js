@@ -15,8 +15,8 @@ const log = {
         console.log(`${++TEST_NUMBER}) ${testName}`);
     },
 
-    subtestName: function(subtestName){
-        this.withTab(subtestName, 1);
+    taskName: function(taskName){
+        this.withTab(taskName, 1);
     },
 
     equal: function(returnExpected, returnObtained){

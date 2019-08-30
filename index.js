@@ -34,16 +34,23 @@ function it(subtestName, callback) {
 		expect: expect.bind({
 			subtestName
 		}),
-		done: done.bind({
+
+		finishIf: finishIf.bind({
 			subtestName
 		})
 	}
 
-	callback(itChildren);
+	try{
+		callback(itChildren)
+	} catch(err){
+		console.log(err.message)
+	}
+	
 }
 
-function done() {
-	console.log(`\tending \"${this.subtestName}\"`);
+function finishIf(reason, condition) {
+	if(condition)
+		throw new Error(log.errorString(this.subtestName, reason));
 }
 
 /**

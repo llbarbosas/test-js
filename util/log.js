@@ -1,4 +1,9 @@
 var TEST_NUMBER = 0;
+const RESET = "\x1b[0m";
+const RED = "\x1b[31m";
+const GREEN = "\x1b[32m";
+const OK = "✓";
+const ERROR = "✕";
 
 const log = {
     withTab: function(text, tabLevel){
@@ -20,16 +25,12 @@ const log = {
 
     notEqual: function(returnExpected, returnObtained){
         this.withTab(`[${isOk(false)}] ${returnExpected} isn't equal to ${returnObtained}`, 2);
-    }
+    },
+
+    errorString: (task, reason) => `\t${RED}ending${RESET} \"${task}\" ${RED}because${RESET} ${reason}`,
 }
 
 function isOk(condition){
-	const RESET = "\x1b[0m";
-	const RED = "\x1b[31m";
-	const GREEN = "\x1b[32m";
-	const OK = "✓";
-	const ERROR = "✕";
-
 	if(condition)
 		return GREEN + OK + RESET;
 	else 

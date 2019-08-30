@@ -12,7 +12,7 @@ describe('Testando o teste', ({ it }) => {
 
 		expect(Safe(valorEsperado).isSafe).to.equal(true)
 		finishIf(
-			"valorEsperado é null, os demais testes não precisam ser feitos", 
+			"valorEsperado é null ou undefined, os demais testes não precisam ser feitos", 
 			!Safe(valorEsperado).isSafe
 		)
 

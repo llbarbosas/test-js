@@ -2,6 +2,7 @@
 Uma lib de testes pra testar conhecimentos em TDD usando Javascript. 
 Lib para aprendizado (não utilize em seus projetos para a Nasa :alien:).
 
+### Uso
 ```javascript
 test('Testando o teste', ({ task }) => {
 	task('Um \"teste\" deve ser um \"teste\"', ({ expect }) => {
@@ -53,3 +54,10 @@ test('Estamos seguros?', ({ task }) => {
                 [✓] true is equal to true
                 [✓] false is equal to false
 ```
+
+### Inspirações
+* [AVA](https://github.com/avajs/ava)
+* [Chai](https://www.chaijs.com/)
+* [TestCafé](https://devexpress.github.io/testcafe/)
+* [Jest](https://jestjs.io/)
+

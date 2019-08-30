@@ -2,24 +2,34 @@
 Uma lib de testes pra testar conhecimentos em TDD usando Javascript
 
 ```javascript
-describe('Testing the test', ({ it }) => {
-	it('A test must be a test', ({ expect }) => {
+describe('Testando o teste', ({ it }) => {
+	it('Um \"teste\" deve ser um \"teste\"', ({ expect }) => {
 		expect("test").to.equal("test")
 	})
 
-	it('Finish tasks', ({ done }) => {
-		done()
+	it('Finalizando os trabalhos', ({ expect, finishIf }) => {
+		const valorEsperado = null
+
+		expect(Safe(valorEsperado).isSafe).to.equal(true)
+		finishIf(
+			"valorEsperado é null, os demais testes não precisam ser feitos", 
+			!Safe(valorEsperado).isSafe
+		)
+
+		// ...
+		expect(valorEsperado).to.equal("valor esperado")
+		// ...
 	})
 })
 
-describe('Is it safe?', ({ it }) => {
-	it('Avoiding null and undefined', ({ expect }) => {
+describe('Estamos seguros?', ({ it }) => {
+	it('Dibrando nulls e undefineds', ({ expect }) => {
 		expect(Safe(null).isNull).to.equal(true)
 		expect(Safe(undefined).isUndefined).to.equal(true)
-		expect(Safe("I'm safe!").isSafe).to.equal(true)
+		expect(Safe("Tô safe!").isSafe).to.equal(true)
 	})
 
-	it('Values inside', ({ expect }) => {
+	it('O que vale é o que cada um tem dentro de si', ({ expect }) => {
 		expect(Safe([]).isEmpty).to.equal(true)
 		expect(Safe([1, 2, 3]).isEmpty).to.equal(false)
 	})
@@ -27,17 +37,18 @@ describe('Is it safe?', ({ it }) => {
 ```
 
 ```text
-1) Testing the test
-	A test must be a test
-		[✓] test is equal to test
-	Finish tasks
-	finish "Finish tasks"
-2) Is it safe?
-	Avoiding null and undefined
-		[✓] true is equal to true
-		[✓] true is equal to true
-		[✓] true is equal to true
-	Values inside
-		[✓] true is equal to true
-		[✓] false is equal to false
+1) Testando o teste
+        Um "teste" deve ser um "teste"
+                [✓] test is equal to test
+        Finalizando os trabalhos
+                [✕] true isn't equal to false
+        ending "Finalizando os trabalhos" because valorEsperado é null, os demais testes não precisam ser feitos
+2) Estamos seguros?
+        Dibrando nulls e undefineds
+                [✓] true is equal to true
+                [✓] true is equal to true
+                [✓] true is equal to true
+        O que vale é o que cada um tem dentro de si
+                [✓] true is equal to true
+                [✓] false is equal to false
 ```

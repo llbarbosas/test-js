@@ -1,5 +1,6 @@
 # test-js
-Uma lib de testes pra testar conhecimentos em TDD usando Javascript
+Uma lib de testes pra testar conhecimentos em TDD usando Javascript. 
+Lib para aprendizado (não utilize em seus projetos para a Nasa :alien:).
 
 ```javascript
 test('Testando o teste', ({ task }) => {
